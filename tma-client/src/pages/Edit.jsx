@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import toast from 'react-hot-toast';
+import { useLoaderData } from 'react-router-dom';
 
 const Edit = () => {
+    const data= useLoaderData()
+    // console.log(data);
     const { user } = useContext(AuthContext);
     const loginUser = user?.email;
 
@@ -14,8 +17,8 @@ const Edit = () => {
         const status = e.target.category.value;
         const Edittask = { loginUser, title, status, description };
         // console.log(Edittask);
-        fetch(`${import.meta.env.VITE_API_URL}/add`, {
-            method: 'PATCH',
+        fetch(`${import.meta.env.VITE_API_URL}/add/${data?._id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -51,6 +54,7 @@ const Edit = () => {
                                 type="text"
                                 name="title"
                                 placeholder="Title"
+                                defaultValue={data?.title}
                                 className="input input-bordered w-full text-center"
                                 required
                             />
@@ -66,6 +70,7 @@ const Edit = () => {
                             <input
                                 type="text"
                                 name="description"
+                                defaultValue={data?.description}
                                 placeholder="Description"
                                 className="input input-bordered w-full text-center"
                                 required

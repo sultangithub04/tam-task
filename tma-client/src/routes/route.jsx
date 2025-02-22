@@ -38,9 +38,9 @@ import PrivateRoute from "./PrivateRoute";
         element: <PrivateRoute><AddTask></AddTask></PrivateRoute>,
       },
       {
-        path: "/edit/:id",
+        path: "/task/:id",
         element: <Edit/>,
-        // loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/add/${params.id}`)
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/task/${params.id}`)
       },
     ]
   },

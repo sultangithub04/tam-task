@@ -52,7 +52,7 @@ export function TaskCard({ task }) {
       </p>
       <p className="mt-2 text-sm text-neutral-400">{task.status}</p>
       <div className="flex justify-end gap-4 text-white">
-        <Link to={`/edit/${task.id}`} className="text-white">
+        <Link to={`/task/${task?._id}`} className="text-white">
           <CiEdit />
         </Link>
         <button

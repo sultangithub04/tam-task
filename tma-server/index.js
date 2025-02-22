@@ -43,7 +43,32 @@ async function run() {
       const result= await taskCollection.find().toArray()
       res.send(result)
     })
-    app.patch('/add', async (req, res) => {
+    app.get('/task/:id', async (req, res) => {
+      const id=req.params.id;
+      const query={_id: new ObjectId(id)}
+      const result = await taskCollection.findOne(query);
+      res.send(result);
+    })
+
+
+    app.put('/edit/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updated = req.body;
+      const task = {
+        $set: {
+          title: updated.title,
+          status: updated.status,
+          description: updated.description,
+        }
+      }
+      const result = await taskCollection.updateOne(filter, task, options);
+      res.send(result);
+    })
+
+
+    app.put('/add/:id', async (req, res) => {
       const newTask = req.body;
       const taskCount = await taskCollection.countDocuments();
       newTask.id = (taskCount + 1).toString();
