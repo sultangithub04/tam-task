@@ -25,5 +25,21 @@ This is a task management application built using React.js with Vite, providing 
 - MongoDB
 - WebSockets/MongoDB Change Streams
 - CORS
+- 
+## Installation Steps
 
+### Backend Setup
+
+1. Clone the repository: https://github.com/sultangithub04/tam-task/tree/main
+
+   git clone https://github.com/sultangithub04/tam-task/tree/main
+   cd tma-client & cd tma-server
+2. Install dependencies: 
+   npm install
+
+3. Set up environment variables in a .env file:
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
+
+4.  nodemon index.js & npm run dev  :     backend and fontend respectively
 
