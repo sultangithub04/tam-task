@@ -17,7 +17,7 @@ const Edit = () => {
         const status = e.target.category.value;
         const Edittask = { loginUser, title, status, description };
         // console.log(Edittask);
-        fetch(`${import.meta.env.VITE_API_URL}/add/${data?._id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/edit/${data?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -27,13 +27,10 @@ const Edit = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                if (data.insertedId) {
                     // console.log('successfully Edited');
                     toast.success('Successfully Edited!')
-
                     e.target.reset();
-                }
-            })
+                    })
     };
 
     return (

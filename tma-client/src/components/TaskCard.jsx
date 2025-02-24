@@ -5,10 +5,16 @@ import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 export function TaskCard({ task }) {
-  const { attributes, listeners, setNodeRef, transform,  } = useDraggable({
-    id: task.id, // Ensure id exists
+  // const { attributes, listeners, setNodeRef, transform,  } = useDraggable({
+  //   id: task._id  // Ensure id exists
+  // });
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task?.id || task?._id
   });
 
+
+  // console.log(setNodeRef);
   const style = transform
     ? {
       transform: `translate(${transform.x}px, ${transform.y}px)`,
@@ -56,7 +62,7 @@ export function TaskCard({ task }) {
           <CiEdit />
         </Link>
         <button
-          className="bg-red-500 hover:bg-red-700 text-white"
+          className="bg-red-500 hover:bg-red-700 text-white" aria-label="Delete Task"
           onClick={() => handleDelete(task._id)} // Moved onClick here
         >
           <MdDeleteForever />
